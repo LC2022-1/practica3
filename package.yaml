@@ -1,0 +1,57 @@
+name:                practica3
+version:             0.1.0.0
+
+extra-source-files:
+- README.md
+description:         Naive Propositional Resolution
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+internal-libraries:
+  test-utils:
+    source-dirs: test/utils
+    dependencies:
+    - practica3
+    - QuickCheck
+
+executables:
+  practica3-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - practica3
+    when:
+    - condition: false
+      other-modules: Paths_practica3
+
+tests:
+  practica3-test:
+    main:                Spec.hs
+    source-dirs:         test/hspec
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - practica3
+    - test-utils
+    - hspec
+
+  practica3-doctest:
+    main:                doctests.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - practica3
+    - doctest
